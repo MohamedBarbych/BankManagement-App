@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Employees Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="antialiased font-sans bg-gray-200">
+<!--<div th:replace="~{Base/navbar :: content}"></div>-->
+
+<div class="text-gray-700 bg-white mb-24" th:fragment="content" id="navbar">
+    <div x-data="{ open: true }" class="flex flex-col max-w-screen-xl px-4 mx-auto md:items-center md:justify-between md:flex-row md:px-6 lg:px-8">
+        <div class="flex flex-row items-center justify-between p-4">
+            <a href="#" class="text-lg font-semibold tracking-widest text-gray-900 uppercase rounded-lg focus:outline-none focus:shadow-outline dark-mode:text-white">GEEKS</a>
+            <button class="rounded-lg md:hidden focus:outline-none focus:shadow-outline" @click="open = !open">
+                <svg fill="currentColor" viewBox="0 0 20 20" class="w-6 h-6">
+                    <path x-show="!open" fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM9 15a1 1 0 011-1h6a1 1 0 110 2h-6a1 1 0 01-1-1z" clip-rule="evenodd"></path>
+                    <path x-show="open" fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                </svg>
+            </button>
+        </div>
+        <nav :class="{'flex': open, 'hidden': !open}" class="flex-col flex-grow hidden pb-4 md:pb-0 md:flex md:justify-end md:flex-row">
+            <form action="/logout" method="post">
+                <button type="submit" class="px-4 py-2 mt-2 text-sm font-semibold rounded-lg hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">Logout</button>
+            </form>
+        </nav>
+
+    </div>
+</div>
+
+<div class="container mx-auto px-4 sm:px-8 py-8">
+    <div class="flex justify-between mb-4">
+        <div>
+            <input type="text" placeholder="Search..." id="searchInput" class="border border-gray-300 py-2 px-4 rounded-lg">
+        </div>
+        <div>
+            <form th:action="@{/add-groupe}" method="get">
+                <button type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out">
+                    Add Groupe
+                </button>
+            </form>
+            <br>    <br/>
+            <form th:action="@{/add-employe}" method="get">
+                <button type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out">
+                    Add Employee
+                </button>
+            </form>
+
+
+        </div>
+    </div>
+    <div class="overflow-x-auto">
+        <div style="height: 600px; overflow-y: auto;">
+            <table class="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
+                <thead>
+                <tr class="bg-gray-50">
+                    <th class="px-6 py-3">ID</th>
+                    <th class="px-6 py-3">Name</th>
+                    <th class="px-6 py-3">Emp-Sup</th>
+                    <th class="px-6 py-3">Groupe</th>
+
+                    <th class="px-6 py-3">Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="employe : ${employes}" class="text-gray-700 transition duration-300 ease-in-out hover:bg-gray-100">
+                    <td class="px-6 py-4 border text-center">
+                        <span th:text="${employe.codeEmploye}"></span>
+                    </td>
+                    <td class="px-6 py-4 border text-center">
+                        <span th:text="${employe.nomEmploye}"></span>
+                    </td>
+                    <td class="px-6 py-4 border text-center">
+                        <span th:text="${employe.employeSup.nomEmploye}"></span>
+                    </td>
+                    <td class="px-6 py-4 border text-center">
+                        <ul>
+                            <li th:each="groupe : ${employe.groupes}" class="py-1">
+                                <span th:text="${groupe.nomGroupe}"></span>
+                            </li>
+                        </ul>
+                    </td>
+                    <td class="px-6 py-4 border text-center">
+                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out">
+                            View
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+                <tfoot>
+                <tr>
+                    <td colspan="3" class="px-6 py-4 text-right font-semibold">Total Employes:</td>
+                    <td class="px-6 py-4 text-center font-semibold">
+                        <span th:if="${employes != null}" th:text="${#lists.size(employes)}"></span>
+                    </td>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script th:inline="javascript">
+    const searchInput = document.getElementById('searchInput');
+    const tableRows = document.querySelectorAll('tr');
+
+    searchInput.addEventListener('input', function () {
+        const searchTerm = searchInput.value.trim().toLowerCase();
+
+        tableRows.forEach(row => {
+            const employeIDColumn = row.cells[0];
+            const employeNameColumn = row.cells[1];
+
+            if (employeIDColumn.innerText.toLowerCase().includes(searchTerm) ||
+                employeNameColumn.innerText.toLowerCase().includes(searchTerm)) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

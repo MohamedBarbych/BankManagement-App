@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Clients Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="antialiased font-sans bg-gray-200">
+<div th:replace="~{Base/navbar :: content}"></div>
+
+<div class="container mx-auto px-4 sm:px-8 py-8">
+    <div class="flex justify-between mb-4">
+        <div>
+            <input type="text" placeholder="Search..." id="searchInput" class="border border-gray-300 py-2 px-4 rounded-lg">
+        </div>
+        <div>
+            <form th:action="@{/add-client}" method="get">
+                <button type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out">
+                    Add Client
+                </button>
+            </form>
+        </div>
+    </div>
+    <div class="overflow-x-auto">
+        <div style="height: 600px; overflow-y: auto;">
+            <table class="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
+            <thead>
+            <tr class="bg-gray-50">
+                <th class="px-6 py-3">ID</th>
+                <th class="px-6 py-3">Name</th>
+                <th class="px-6 py-3">Comptes</th>
+                <th class="px-6 py-3">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="client : ${clients}" class="text-gray-700 transition duration-300 ease-in-out hover:bg-gray-100">
+                <td class="px-6 py-4 border text-center">
+                    <span th:text="${client.codeClient}"></span>
+                </td>
+                <td class="px-6 py-4 border text-center">
+                    <span th:text="${client.nomClient}"></span>
+                </td>
+                <td class="px-6 py-4 border text-center">
+                    <ul>
+                        <li th:each="compte : ${client.comptes}" class="py-1">
+                            <span th:text="${compte.codeCompte}"></span>
+                        </li>
+                    </ul>
+                </td>
+                <td class="px-6 py-4 border text-center">
+                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out">
+                        View
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="3" class="px-6 py-4 text-right font-semibold">Total Clients:</td>
+                <td class="px-6 py-4 text-center font-semibold">
+                    <span th:if="${clients != null}" th:text="${#lists.size(clients)}"></span>
+                </td>
+            </tr>
+            </tfoot>
+        </table>
+        </div>
+    </div>
+</div>
+
+<script th:inline="javascript">
+    const searchInput = document.getElementById('searchInput');
+    const tableRows = document.querySelectorAll('tr');
+
+    searchInput.addEventListener('input', function () {
+        const searchTerm = searchInput.value.trim().toLowerCase();
+
+        tableRows.forEach(row => {
+            const clientIDColumn = row.cells[0];
+            const clientNameColumn = row.cells[1];
+
+            if (clientIDColumn.innerText.toLowerCase().includes(searchTerm) ||
+                clientNameColumn.innerText.toLowerCase().includes(searchTerm)) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

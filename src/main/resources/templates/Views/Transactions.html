@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Operation Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .operation-box {
+            transition: transform 0.3s ease-in-out;
+        }
+    </style>
+</head>
+<body class="antialiased font-sans bg-gray-200 ">
+<div th:replace="~{Base/navbar :: content}"></div>
+
+<div style="display: flex; justify-content: center;">
+    <form th:action="@{/operations-page}" method="post" class="my-3" style="display: flex; align-items: center;">
+        <select name="selectedCompte" id="compte" class="border border-gray-300 bg-white py-2 px-4 rounded-lg">
+            <option value="">-- Select Account --</option>
+            <th:block th:each="compte : ${comptes}">
+                <option th:value="${compte.codeCompte}" th:text="${compte.codeCompte}"></option>
+            </th:block>
+        </select>
+        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out ml-4">View Operations</button>
+    </form>
+</div>
+
+
+<section th:if="${selectedCompte}" class="mt-8 flex justify-between w-full">
+    <section class="w-1/2 mt-8 m-5 bg-white rounded-lg p-4">
+        <h2 class="text-xl mb-4">Manage Operations for Compte <span class="text-lg text-blue-600 font-semibold" th:text="${selectedCompte.codeCompte}"></span></h2>
+        <form th:action="@{/add-operation}" method="post">
+            <div class="mb-4">
+                <label class="block text-gray-700 text-md font-bold mb-4">Operation Type:</label>
+                <div class="flex items-center space-x-4">
+                    <div>
+                        <input type="radio" id="retrait" name="operationType" value="Retrait" class="form-radio h-5 w-5 text-blue-600">
+                        <label for="retrait" class="text-gray-700 ml-2">Retrait</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="versement" name="operationType" value="Versement" class="form-radio h-5 w-5 text-blue-600">
+                        <label for="versement" class="text-gray-700 ml-2">Versement</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="virement" name="operationType" value="Virement" class="form-radio h-5 w-5 text-blue-600">
+                        <label for="virement" class="text-gray-700 ml-2">Virement</label>
+                    </div>
+                </div>
+            </div>
+
+            <div id="comptesSelect" style="display: none;">
+                <label for="otherCompte" class="block text-gray-700 text-md font-bold mb-4">Choose Account:</label>
+                <select name="selectedOtherCompte" id="otherCompte" class="border border-gray-300 py-2 px-4 rounded-lg w-full mt-4">
+                    <option value="">-- Select Account --</option>
+                    <th:block th:each="compte : ${comptes}">
+                        <option th:value="${compte.codeCompte}" th:text="${compte.codeCompte}"></option>
+                    </th:block>
+                </select>
+            </div>
+
+            <input type="hidden" name="codeCompte" th:value="${selectedCompte.codeCompte}" />
+            <input type="number" name="montant" class="border border-gray-300 py-2 px-4 rounded-lg w-full mt-4" step="0.01" placeholder="Enter Amount">
+            <button type="submit" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mt-4 w-full">Add Operation</button>
+        </form>
+    </section>
+
+
+    <section class="w-1/2 mt-8 m-5 bg-white rounded-lg p-4" style="height: 400px; overflow-y: auto;">
+        <h2 class="text-xl mb-4">Operations for Compte <span class="text-lg text-blue-600 font-semibold" th:text="${selectedCompte.codeCompte}"></span></h2>
+        <div th:each="operation : ${selectedCompte.operations}" class="operation-box mx-6 p-4 border border-white bg-gray-200 rounded-lg transform hover:scale-105 mb-2">
+            <span class="font-semibold block mb-1">Operation Type: <span class="text-lg mx-12 text-gray-600 font-medium text-center" th:text="${operation.typeOperation}"></span></span>
+            <span class="font-semibold block mb-1">Operation Number: <span  class="text-lg mx-12 text-gray-600 font-medium text-center" th:text="${operation.numeroOperation}"></span></span>
+            <span class="font-semibold block mb-1">Amount: <span class="text-lg text-green-600 ml-28 font-medium text-center" th:text="${operation.montant}"></span><span class="text-lg text-green-600 font-medium text-center"> DH</span> </span>
+        </div>
+    </section>
+
+</section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const virementRadio = document.getElementById('virement');
+        const comptesSelect = document.getElementById('comptesSelect');
+
+        virementRadio.addEventListener('change', function () {
+            const selectedOtherCompte = document.getElementById('selectedOtherCompte');
+            if (virementRadio.checked) {
+                comptesSelect.style.display = 'block';
+                selectedOtherCompte.setAttribute("name", "selectedCompte");
+            } else {
+                comptesSelect.style.display = 'none';
+                selectedOtherCompte.removeAttribute("name");
+            }
+        });
+    });
+</script>
+
+
+
+</body>
+</html>
