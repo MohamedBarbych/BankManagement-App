@@ -7,8 +7,13 @@
         "value_area": 800
       }
     },
+    "background": {
+      "color": {
+        "value": "#282828"
+      }
+    },
     "color": {
-      "value": "#3f4572"
+      "value": "#37B258"
     },
     "shape": {
       "type": "polygon",

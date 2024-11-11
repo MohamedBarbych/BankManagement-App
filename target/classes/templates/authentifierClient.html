@@ -40,7 +40,7 @@
 
 </style>
 
-<body class="bg-gradient-to-r from-blue-50 via-indigo-100 to-purple-200 min-h-screen flex justify-center items-center font-sans">
+<body class="bg-gradient-to-r from-blue-50 via-green-100 to-purple-200 min-h-screen flex justify-center items-center font-sans">
 
 <!-- Particle Container - Positioned as the Background -->
 <div id="particles-js" class="absolute inset-0"></div>
@@ -50,7 +50,7 @@
 <img src="/images/Flag_of_Morocco.png" alt="Right Logo" class="absolute top-4 right-4 w-24">
 
 <!-- Centered welcome title with enhanced Tailwind styling -->
-<div class="animated-title absolute top-8 left-1/2 transform -translate-x-1/2 text-3xl font-bold uppercase py-3 px-6 tracking-wide bg-clip-text text-transparent bg-gradient-to-r from-blue-500 via-purple-600 to-indigo-500">
+<div class="animated-title absolute top-8 left-1/2 transform -translate-x-1/2 text-3xl font-bold uppercase py-3 px-6 tracking-wide bg-clip-text text-transparent bg-gradient-to-r from-blue-500 via-purple-600 to-green-500">
     LSI Bank: Fast, Secure, Reliable Banking
 </div>
 
@@ -58,28 +58,28 @@
 
 <!-- Authentication form container -->
 <div class="bg-cover bg-center p-8 rounded-lg shadow-xl max-w-sm w-full" style="background-image: url('https://your-image-url.jpg');">
-    <h1 class="text-2xl font-semibold text-gray-800 mb-6 text-center">Authentication User</h1>
+    <h1 class="text-2xl font-semibold text-black mb-6 text-center">Authentication User</h1>
     <form th:action="@{/authentifierUser}" method="post" th:object="${user}"
           class="bg-transparent border border-white border-opacity-20 p-8 rounded-xl shadow-2xl max-w-sm w-full space-y-6 transform transition duration-500 hover:scale-105">
 
         <!-- Username input field -->
         <div>
-            <label for="username" class="block text-indigo-600 text-sm font-semibold mb-2">Username</label>
+            <label for="username" class="block text-black text-sm font-semibold mb-2">Username</label>
             <input type="text" id="username" name="username" th:field="*{username}" placeholder="" required
                    style="background-color: transparent; border: 1px solid rgba(255, 255, 255, 0.8); color: black; placeholder-color: rgba(0, 0, 0, 0.4);"
-                   class="w-full p-3 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 transition duration-200">
+                   class="w-full p-3 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 transition duration-200">
         </div>
         <br>
         <!-- User code input field -->
         <div>
-            <label for="userId" class="block text-indigo-600 text-sm font-semibold mb-2">User Code</label>
+            <label for="userId" class="block text-black text-sm font-semibold mb-2">User Code</label>
             <input type="text" id="userId" name="userId" th:field="*{userId}" placeholder="" required
                    style="background-color: transparent; border: 1px solid rgba(255, 255, 255, 0.8); color: black; placeholder-color: rgba(0, 0, 0, 0.4);"
-                   class="w-full p-3 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 transition duration-200">
+                   class="w-full p-3 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 transition duration-200">
         </div>
         <br>
         <!-- Submit button -->
-        <button type="submit" class="w-full bg-indigo-600 bg-opacity-80 text-white py-3 rounded-md font-semibold hover:bg-opacity-100 transition duration-200">
+        <button type="submit" class="w-full bg-green-600 bg-opacity-80 text-white py-3 rounded-md font-semibold hover:bg-opacity-100 transition duration-200">
             Sign In
         </button>
     </form>
