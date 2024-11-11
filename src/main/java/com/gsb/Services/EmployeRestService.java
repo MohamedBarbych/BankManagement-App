@@ -135,6 +135,12 @@ public class EmployeRestService {
 
         return modelAndView;
     }
+    @GetMapping("/employees")
+    public String showEmployees(Model model) {
+        List<Employe> employes = employeRepository.findAll(); // Or your method to fetch es
+        model.addAttribute("employes", employes);
+        return "employees"; // The name of your Thymeleaf template (HTML file)
+    }
 
     @GetMapping("/add-employe")
     public ModelAndView addEmployesPage(Model model) {
