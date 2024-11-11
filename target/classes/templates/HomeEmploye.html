@@ -24,7 +24,7 @@
         </section>
 
         <section class="mt-1 m-5 mx-10 bg-white rounded-lg p-4">
-            <h2 class="text-xl text-center mb-6">Account Types Overview</h2>
+            <h2 class="text-xl text-center mb-6">Aperçu</h2>
             <div class="flex justify-center items-center">
                 <canvas id="accountChart" width="300" height="300"></canvas>
             </div>
@@ -111,27 +111,58 @@
 
     const ctx = document.getElementById('accountChart').getContext('2d');
     new Chart(ctx, {
-        type: 'doughnut',
+        type: 'bar',
         data: {
-            labels: Object.keys(compteCounts).map((label, index) => `${label}: ${percentages[index]}%`),
-            datasets: [{
-                data: Object.values(compteCounts),
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.5)',
-                    'rgba(54, 162, 235, 0.5)'
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)'
-                ],
-                borderWidth: 1
-            }]
+            labels: ['Types des comptes'], //Object.keys(compteCounts).map((label, index) => `${label}: ${percentages[index]}%`),
+            datasets: [
+                {
+                    label: `Compte Courant (${percentages[0]}%)`,
+                    data: [percentages[0]],
+                    backgroundColor: 'rgb(38,155,50)',
+                    borderColor: 'rgb(38,155,50)',
+                    borderWidth: 1
+                },
+                {
+                    label: `Compte Epargne (${percentages[1]}%)`,
+                    data: [percentages[1]],
+                    backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                }
+            ]
         },
         options: {
             responsive: false,
-            maintainAspectRatio: false
+            maintainAspectRatio: false,
+        scales: {
+            x: {
+                stacked: true
+            },
+            y: {
+                stacked: true,
+                min: 0,
+                max: 100,
+                title: {
+                    display: true,
+                    text: 'Percentage (%)'
+                }
+            }
         }
+    }
     });
+    // [{
+    // data: Object.values(compteCounts),
+    // backgroundColor: [
+    //     'rgba(255, 99, 132, 0.5)',
+    //     'rgba(54, 162, 235, 0.5)'
+    // ],
+    // borderColor: [
+    //     'rgba(255, 99, 132, 1)',
+    //     'rgba(54, 162, 235, 1)'
+    // ],
+    // borderWidth: 1
+    // }]
+
 </script>
 
 </body>
