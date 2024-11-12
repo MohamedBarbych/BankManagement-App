@@ -63,9 +63,30 @@
                             <p class="text-gray-700">Date Création: <span class="font-semibold" th:text="${#dates.format(compte.dateCreation, 'dd-MM-yyyy')}"></span></p>
                             <p class="text-gray-700">Solde: <span class="font-semibold text-green-600" th:text="${compte.solde}"></span></p>
                         </div>
-                        <button onclick="" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out">
+
+
+
+
+                        <!-- Print Button -->
+                        <button onclick="openPrintDialog()" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out">
                             <i class="fas fa-print"></i> Imprimer
                         </button>
+
+                        <!-- Modal Overlay -->
+                        <div id="printModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
+                            <div class="bg-white p-6 rounded-lg shadow-lg text-center w-2/3 h-2/3 flex flex-col justify-center">
+                                <h2 class="text-2xl font-bold mb-4">Print Preview</h2>
+                                <p class="mb-6">Here would be a preview of the content to print.</p>
+                                <button onclick="printPage()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out">
+                                    Print Page
+                                </button>
+                                <button onclick="closePrintDialog()" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mt-4 transition duration-300 ease-in-out">
+                                    Close
+                                </button>
+                            </div>
+                        </div>
+
+
 
                     </div>
 
@@ -170,6 +191,20 @@
     // borderWidth: 1
     // }]
 
+</script>
+<script>
+    function openPrintDialog() {
+        document.getElementById("printModal").classList.remove("hidden");
+    }
+
+    function closePrintDialog() {
+        document.getElementById("printModal").classList.add("hidden");
+    }
+
+    function printPage() {
+        closePrintDialog();
+        window.print(); // Opens the print dialog for the entire page
+    }
 </script>
 
 </body>
