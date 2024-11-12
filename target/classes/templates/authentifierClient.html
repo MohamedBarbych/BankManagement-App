@@ -5,6 +5,11 @@
     <title>User Login</title>
     <link rel="icon" href="/images/LSI_BankLOGO.png" sizes="120x120" type="image/png">
     <link href="/css/output.css" rel="stylesheet">
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+
 </head>
 
 <style>
@@ -60,9 +65,15 @@
 
 <!-- Authentication form container -->
 <div class="bg-cover bg-center p-8 rounded-lg shadow-xl max-w-sm w-full" style="background-image: url('https://your-image-url.jpg');">
-    <h1 class="text-2xl font-semibold text-black mb-6 text-center">Authentication User</h1>
+
+    <h1 class="text-2xl font-semibold text-black mb-6 text-center flex items-center justify-center">
+        <i class="fas fa-user-tie text-blue-500 text-2xl" style="margin-right: 15px;"></i>
+        Authentication User
+    </h1>
+
     <form th:action="@{/authentifierUser}" method="post" th:object="${user}"
           class="bg-transparent border border-white border-opacity-20 p-8 rounded-xl shadow-2xl max-w-sm w-full space-y-6 transform transition duration-500 hover:scale-105">
+
 
         <!-- Username input field -->
         <div>
