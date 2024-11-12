@@ -1,13 +1,15 @@
-# LSIBank
-
+# LSI Bank
 LSIBank est une application web qui fournit une interface utilisateur pour gérer les opérations bancaires, y compris la consultation des comptes, des clients et des transactions. Le projet est construit avec Spring Boot pour le backend et Thymeleaf avec Tailwind CSS pour le frontend.
+<div align="center">
+  <img src="./src/main/resources/static/images/LSI_Bank.png" width="250" />
+</div>
+
+
 
 ## Table des Matières
-
 - [Fonctionnalités](#fonctionnalités)
 - [Technologies Utilisées](#technologies-utilisées)
 - [Installation](#installation)
-- [Configuration](#configuration)
 - [Structure du Projet](#structure-du-projet)
 
 ## Fonctionnalités
@@ -17,6 +19,10 @@ LSIBank est une application web qui fournit une interface utilisateur pour gére
 - **Opérations de Transactions** : Consulter et suivre les transactions pour différents comptes.
 - **Design Responsive** : L'interface utilisateur est conçue pour fonctionner sur ordinateurs et appareils mobiles.
 - **Barre de Navigation avec Icônes** : Barre de navigation interactive avec des icônes de section pour une navigation améliorée.
+  
+![Overview](https://github.com/user-attachments/assets/3120bf00-8432-40e6-be5a-e13b99cda2aa)
+
+
 
 ## Technologies Utilisées
 
