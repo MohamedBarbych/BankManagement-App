@@ -43,8 +43,8 @@ LSIBank est une application web qui fournit une interface utilisateur pour gére
 ### Cloner le Référentiel
 
 ```bash
-git clone https://github.com/yourusername/LSIBank.git
-cd LSIBank
+git clone https://github.com/yourusername/BankManagement-App.git
+cd BankManagement-App
 ```
 
 ### Configuration de la Base de Données
