@@ -3,7 +3,7 @@ LSIBank est une application web qui fournit une interface utilisateur pour gére
 <div align="center">
   <img src="./src/main/resources/static/images/LSI_Bank.png" width="250" />
 </div>
-
+   
 
 
 ## Table des Matières
@@ -31,7 +31,7 @@ LSIBank est une application web qui fournit une interface utilisateur pour gére
 - **Base de Données** : MySQL (ou toute base de données compatible avec Spring Data JPA)
 - **Outil de Build** : Maven
 
-## Installation
+## Installation steps
 
 ### Prérequis
 
