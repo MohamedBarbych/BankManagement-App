@@ -13,7 +13,7 @@ LSIBank est une application web qui fournit une interface utilisateur pour gére
 - [Structure du Projet](#structure-du-projet)
 
 ## Fonctionnalités
-
+   
 - **Gestion des Comptes** : Consulter et gérer les comptes bancaires.
 - **Gestion des Clients** : Consulter et gérer les informations des clients.
 - **Opérations de Transactions** : Consulter et suivre les transactions pour différents comptes.
