@@ -6,11 +6,11 @@ LSIBank est une application web qui fournit une interface utilisateur pour gére
    
 
 
-## Table des Matières
-- [Fonctionnalités](#fonctionnalités)
+## Table des Matières   
+- [Fonctionnalités](#fonctionnalités)  
 - [Technologies Utilisées](#technologies-utilisées)
 - [Installation](#installation)
-- [Structure du Projet](#structure-du-projet)
+- [Structure du Projet](#structure-du-projet)   
 
 ## Fonctionnalités
    
@@ -19,7 +19,7 @@ LSIBank est une application web qui fournit une interface utilisateur pour gére
 - **Opérations de Transactions** : Consulter et suivre les transactions pour différents comptes.
 - **Design Responsive** : L'interface utilisateur est conçue pour fonctionner sur ordinateurs et appareils mobiles.
 - **Barre de Navigation avec Icônes** : Barre de navigation interactive avec des icônes de section pour une navigation améliorée.
-  
+       
 ![Overview](https://github.com/user-attachments/assets/3120bf00-8432-40e6-be5a-e13b99cda2aa)
 
 
