@@ -7,7 +7,7 @@ LSIBank est une application web qui fournit une interface utilisateur pour gére
 
 
 ## Table des Matières   
-- [Fonctionnalités](#fonctionnalités)  
+- [Fonctionnalités](#fonctionnalités)     
 - [Technologies Utilisées](#technologies-utilisées)
 - [Installation](#installation)
 - [Structure du Projet](#structure-du-projet)   
