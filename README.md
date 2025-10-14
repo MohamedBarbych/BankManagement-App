@@ -55,8 +55,8 @@ cd BankManagement-App
 
    ```properties
    spring.datasource.url=jdbc:mysql://localhost:3306/db_banque_lsi
-   spring.datasource.username=here-your-username
-   spring.datasource.password=here-your-password
+   spring.datasource.username=username
+   spring.datasource.password=password
     ```
 
 ## Structure du projet 
